@@ -1,0 +1,131 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --theme-primary: #10B981;
+    --theme-primary-50: #10B98180;
+    --theme-primary-70: #10B981B3;
+    --theme-secondary: #059669;
+    --theme-light: #D1FAE5;
+    --theme-accent: #F59E0B;
+  }
+
+  [data-theme="goldenbridge"] {
+    --theme-primary: #F59E0B;
+    --theme-primary-50: #F59E0B80;
+    --theme-primary-70: #F59E0BB3;
+    --theme-secondary: #B45309;
+    --theme-light: #FEF3C7;
+    --theme-accent: #10B981;
+  }
+
+  [data-theme="skyline"] {
+    --theme-primary: #3B82F6;
+    --theme-primary-50: #3B82F680;
+    --theme-primary-70: #3B82F6B3;
+    --theme-secondary: #1D4ED8;
+    --theme-light: #DBEAFE;
+    --theme-accent: #EC4899;
+  }
+
+  [data-theme="sunset"] {
+    --theme-primary: #EC4899;
+    --theme-primary-50: #EC489980;
+    --theme-primary-70: #EC4899B3;
+    --theme-secondary: #BE185D;
+    --theme-light: #FCE7F3;
+    --theme-accent: #6366F1;
+  }
+
+  [data-theme="dark"] {
+    --theme-primary: var(--theme-primary-dark);
+    --theme-secondary: var(--theme-secondary-dark);
+    --theme-accent: var(--theme-accent-dark);
+    --theme-background: var(--theme-background-dark);
+    --theme-text: var(--theme-text-dark);
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply px-6 py-2.5 bg-theme-primary text-white rounded-lg 
+           hover:bg-theme-secondary transition-all duration-300 
+           shadow-md hover:shadow-lg transform hover:-translate-y-0.5
+           focus:ring-2 focus:ring-theme-light focus:outline-none;
+  }
+  
+  .card {
+    @apply bg-white rounded-xl shadow-md
+           border border-gray-100 hover:border-theme-light
+           transition-all duration-300 hover:shadow-xl
+           hover:scale-[1.02] transform-gpu
+           relative overflow-hidden;
+  }
+  
+  .input-field {
+    @apply w-full rounded-lg border-gray-300 
+           shadow-sm focus:border-theme-primary 
+           focus:ring-theme-primary transition-colors duration-200;
+  }
+
+  .page-title {
+    @apply text-4xl font-bold text-gray-900 mb-4
+           bg-gradient-to-r from-theme-primary to-theme-accent
+           bg-clip-text text-transparent animate-gradient;
+  }
+
+  .section-title {
+    @apply text-2xl font-bold text-gray-900 mb-6
+           relative pl-4 border-l-4 border-theme-primary;
+  }
+}
+
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-gradient {
+  background-size: 200% auto;
+  animation: gradient 4s ease infinite;
+}
+
+/* 自定义滚动条 */
+::-webkit-scrollbar {
+  @apply w-2;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-100;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-theme-primary-50 rounded-full 
+         hover:bg-theme-primary-70 transition-colors;
+}
+
+/* 平滑滚动 */
+html {
+  scroll-behavior: smooth;
+}
+
+/* 基础文本样式 */
+body {
+  @apply text-gray-900 bg-gray-50;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* 动画过渡 */
+* {
+  @apply transition-colors duration-200 ease-in-out;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
